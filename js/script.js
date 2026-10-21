@@ -75,14 +75,10 @@ function updateCart() {
     if (!cartContainer) {
 
         if (cartCount) {
-
-            cartCount.textContent =
-                cart.length;
-
+            cartCount.textContent = cart.length;
         }
 
         return;
-
     }
 
     cartContainer.innerHTML = "";
@@ -94,6 +90,7 @@ function updateCart() {
         total += item.price;
 
         cartContainer.innerHTML += `
+
         <div class="cart-item">
 
             <div class="cart-product">
@@ -107,7 +104,9 @@ function updateCart() {
 
                     <h4>${item.name}</h4>
 
-                    <p>$${item.price.toLocaleString()} COP</p>
+                    <p>
+                        $${item.price.toLocaleString()} COP
+                    </p>
 
                 </div>
 
@@ -118,6 +117,7 @@ function updateCart() {
             </button>
 
         </div>
+
         `;
 
     });
@@ -154,7 +154,9 @@ document
                 button.dataset.name,
 
             price:
-                Number(button.dataset.price),
+                Number(
+                    button.dataset.price
+                ),
 
             image:
                 button.dataset.image
@@ -217,7 +219,7 @@ if (clearButton) {
 }
 
 // ==========================
-// FILTRO DE PRODUCTOS
+// FILTROS
 // ==========================
 
 const buscador =
@@ -237,41 +239,32 @@ if (buscador && filtro) {
             filtro.value;
 
         document
-        .querySelectorAll(".card")
-        .forEach(card => {
+            .querySelectorAll(".card")
+            .forEach(card => {
 
-            const nombre =
-                card
-                .querySelector("h3")
-                .textContent
-                .toLowerCase();
+                const nombre =
+                    card
+                        .querySelector("h3")
+                        .textContent
+                        .toLowerCase();
 
-            const tipo =
-                card.dataset.category;
+                const tipo =
+                    card.dataset.category;
 
-            const coincideTexto =
-                nombre.includes(texto);
+                const coincideTexto =
+                    nombre.includes(texto);
 
-            const coincideCategoria =
-                categoria === "todas" ||
-                tipo === categoria;
-
-            if (
-                coincideTexto &&
-                coincideCategoria
-            ) {
+                const coincideCategoria =
+                    categoria === "todas" ||
+                    tipo === categoria;
 
                 card.style.display =
-                    "block";
+                    coincideTexto &&
+                    coincideCategoria
+                        ? "block"
+                        : "none";
 
-            } else {
-
-                card.style.display =
-                    "none";
-
-            }
-
-        });
+            });
 
     }
 
