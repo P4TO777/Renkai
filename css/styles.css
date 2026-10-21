@@ -213,23 +213,17 @@ nav a:hover {
 
 .card {
 
-    background: white;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,.15);
-
-    transition: .3s;
+    cursor: pointer;
 
 }
 
 .card:hover {
 
     transform: translateY(-8px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.2);
 
 }
 

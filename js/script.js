@@ -48,34 +48,22 @@ function renderizarProductos() {
 
         container.innerHTML += `
 
-        <article
-        class="card"
-        data-category="${producto.categoria}">
+        <div
+            class="card"
+            onclick="window.location.href='producto.html?id=${producto.id}'">
 
-            <a href="producto.html?id=${producto.id}">
-
-                <img
+            <img
                 src="${producto.imagen}"
                 alt="${producto.nombre}">
-
-            </a>
 
             <div class="card-content">
 
                 <h3>
-
-                    <a href="producto.html?id=${producto.id}">
-
-                        ${producto.nombre}
-
-                    </a>
-
+                    ${producto.nombre}
                 </h3>
 
                 <p>
-
                     ${producto.categoria}
-
                 </p>
 
                 <span class="price">
@@ -91,7 +79,9 @@ function renderizarProductos() {
 
                     data-price="${producto.precio}"
 
-                    data-image="${producto.imagen}">
+                    data-image="${producto.imagen}"
+
+                    onclick="event.stopPropagation()">
 
                     Añadir al carrito
 
@@ -99,9 +89,9 @@ function renderizarProductos() {
 
             </div>
 
-        </article>
-
-        `;
+        </div>
+        
+    `;
 
     });
 
