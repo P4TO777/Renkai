@@ -59,11 +59,15 @@ function renderizarProductos() {
             <div class="card-content">
 
                 <h3>
+
                     ${producto.nombre}
+
                 </h3>
 
                 <p>
+
                     ${producto.categoria}
+
                 </p>
 
                 <span class="price">
@@ -90,8 +94,8 @@ function renderizarProductos() {
             </div>
 
         </div>
-        
-    `;
+
+        `;
 
     });
 
@@ -183,7 +187,7 @@ if(next){
 }
 
 // ===================================
-// BUSCADOR Y FILTROS
+// FILTROS
 // ===================================
 
 const buscador =
@@ -300,6 +304,11 @@ function activarBotonesCarrito(){
             saveCart();
 
             updateCart();
+
+            alert(
+            item.name +
+            " añadido al carrito."
+            );
 
         });
 
@@ -441,7 +450,7 @@ if(detalle){
 
     const producto =
     productos.find(
-    p=>p.id===id
+    p => p.id === id
     );
 
     if(producto){
@@ -458,63 +467,62 @@ if(detalle){
             <div>
 
                 <h1>
-
                     ${producto.nombre}
-
                 </h1>
 
                 <p>
-
                     <strong>Anime:</strong>
                     ${producto.anime}
-
                 </p>
 
                 <p>
-
                     <strong>Categoría:</strong>
                     ${producto.categoria}
-
                 </p>
 
                 <p>
-
                     <strong>Altura:</strong>
                     ${producto.altura}
-
                 </p>
 
                 <p>
-
                     <strong>Material:</strong>
                     ${producto.material}
-
                 </p>
 
                 <p>
-
                     <strong>Fabricante:</strong>
                     ${producto.fabricante}
-
                 </p>
 
                 <p>
-
                     ${producto.descripcion}
-
                 </p>
 
                 <h2>
-
                     $${producto.precio.toLocaleString()} COP
-
                 </h2>
+
+                <button
+                    class="btn add-to-cart"
+
+                    data-name="${producto.nombre}"
+
+                    data-price="${producto.precio}"
+
+                    data-image="${producto.imagen}">
+
+                    Añadir al carrito
+
+                </button>
 
             </div>
 
         </div>
 
         `;
+
+        activarBotonesCarrito();
 
     }
 
@@ -523,4 +531,5 @@ if(detalle){
 // ===================================
 
 renderizarProductos();
+
 updateCart();
