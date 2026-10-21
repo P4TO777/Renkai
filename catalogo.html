@@ -11,111 +11,283 @@
 
 <body>
 
-    <header>
+<header>
 
-        <div class="logo">
-            <a href="index.html">RENKAI</a>
-        </div>
+    <div class="logo">
+        <a href="index.html">RENKAI</a>
+    </div>
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
 
-    </header>
+            <li>
+                <a href="#cart">
+                    🛒 <span id="cart-count">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-    <section class="section">
+</header>
 
-        <h2>Catálogo Completo</h2>
+<section class="section">
 
-        <div class="filter-container">
+    <h2>Catálogo Completo</h2>
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Buscar figura...">
+    <div class="filter-container">
 
-            <select id="categoryFilter">
-                <option value="todas">Todas las categorías</option>
-                <option value="original">Originales</option>
-                <option value="replica">Réplicas</option>
-                <option value="resina">Resinas</option>
-            </select>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar figura...">
 
-        </div>
+        <select id="categoryFilter">
 
-        <div class="products">
+            <option value="todas">
+                Todas las categorías
+            </option>
 
-            <article class="card" data-category="original">
-                <img src="img/luffy.jpg" alt="">
-                <div class="card-content">
-                    <h3>Luffy Gear 5</h3>
-                    <p>Original</p>
-                    <span class="price">$149.900 COP</span>
-                    <button>Comprar</button>
-                </div>
-            </article>
+            <option value="original">
+                Originales
+            </option>
 
-            <article class="card" data-category="resina">
-                <img src="img/gojo.jpg" alt="">
-                <div class="card-content">
-                    <h3>Gojo Satoru Resina</h3>
-                    <p>Resina</p>
-                    <span class="price">$179.900 COP</span>
-                    <button>Comprar</button>
-                </div>
-            </article>
+            <option value="replica">
+                Réplicas
+            </option>
 
-            <article class="card" data-category="replica">
-                <img src="img/goku.jpg" alt="">
-                <div class="card-content">
-                    <h3>Goku Ultra Instinto</h3>
-                    <p>Réplica</p>
-                    <span class="price">$199.900 COP</span>
-                    <button>Comprar</button>
-                </div>
-            </article>
+            <option value="resina">
+                Resinas
+            </option>
 
-            <article class="card" data-category="original">
-                <img src="img/naruto.jpg" alt="">
-                <div class="card-content">
-                    <h3>Naruto Modo Sabio</h3>
-                    <p>Original</p>
-                    <span class="price">$159.900 COP</span>
-                    <button>Comprar</button>
-                </div>
-            </article>
+        </select>
 
-            <article class="card" data-category="resina">
-                <img src="img/madara.jpg" alt="">
-                <div class="card-content">
-                    <h3>Madara Uchiha</h3>
-                    <p>Resina</p>
-                    <span class="price">$269.900 COP</span>
-                    <button>Comprar</button>
-                </div>
-            </article>
+    </div>
 
-            <article class="card" data-category="replica">
-                <img src="img/vegeta.jpg" alt="">
-                <div class="card-content">
-                    <h3>Vegeta Blue</h3>
-                    <p>Réplica</p>
-                    <span class="price">$169.900 COP</span>
-                    <button>Comprar</button>
-                </div>
-            </article>
+    <div class="products">
 
-        </div>
+        <!-- Luffy -->
 
-    </section>
+        <article class="card" data-category="original">
 
-    <footer>
-        <p>© 2026 Renkai Store. Todos los derechos reservados.</p>
-    </footer>
+            <img src="img/luffy.jpg" alt="">
 
-    <script src="js/script.js"></script>
+            <div class="card-content">
+
+                <h3>Luffy Gear 5</h3>
+
+                <p>Original</p>
+
+                <span class="price">
+                    $149.900 COP
+                </span>
+
+                <button
+                    class="add-to-cart"
+                    data-name="Luffy Gear 5"
+                    data-price="149900"
+                    data-image="img/luffy.jpg">
+
+                    Añadir al carrito
+
+                </button>
+
+            </div>
+
+        </article>
+
+        <!-- Gojo -->
+
+        <article class="card" data-category="resina">
+
+            <img src="img/gojo.jpg" alt="">
+
+            <div class="card-content">
+
+                <h3>Gojo Satoru Resina</h3>
+
+                <p>Resina</p>
+
+                <span class="price">
+                    $179.900 COP
+                </span>
+
+                <button
+                    class="add-to-cart"
+                    data-name="Gojo Satoru Resina"
+                    data-price="179900"
+                    data-image="img/gojo.jpg">
+
+                    Añadir al carrito
+
+                </button>
+
+            </div>
+
+        </article>
+
+        <!-- Goku -->
+
+        <article class="card" data-category="replica">
+
+            <img src="img/goku.jpg" alt="">
+
+            <div class="card-content">
+
+                <h3>Goku Ultra Instinto</h3>
+
+                <p>Réplica</p>
+
+                <span class="price">
+                    $199.900 COP
+                </span>
+
+                <button
+                    class="add-to-cart"
+                    data-name="Goku Ultra Instinto"
+                    data-price="199900"
+                    data-image="img/goku.jpg">
+
+                    Añadir al carrito
+
+                </button>
+
+            </div>
+
+        </article>
+
+        <!-- Naruto -->
+
+        <article class="card" data-category="original">
+
+            <img src="img/naruto.jpg" alt="">
+
+            <div class="card-content">
+
+                <h3>Naruto Modo Sabio</h3>
+
+                <p>Original</p>
+
+                <span class="price">
+                    $159.900 COP
+                </span>
+
+                <button
+                    class="add-to-cart"
+                    data-name="Naruto Modo Sabio"
+                    data-price="159900"
+                    data-image="img/naruto.jpg">
+
+                    Añadir al carrito
+
+                </button>
+
+            </div>
+
+        </article>
+
+        <!-- Madara -->
+
+        <article class="card" data-category="resina">
+
+            <img src="img/madara.jpg" alt="">
+
+            <div class="card-content">
+
+                <h3>Madara Uchiha</h3>
+
+                <p>Resina</p>
+
+                <span class="price">
+                    $269.900 COP
+                </span>
+
+                <button
+                    class="add-to-cart"
+                    data-name="Madara Uchiha"
+                    data-price="269900"
+                    data-image="img/madara.jpg">
+
+                    Añadir al carrito
+
+                </button>
+
+            </div>
+
+        </article>
+
+        <!-- Vegeta -->
+
+        <article class="card" data-category="replica">
+
+            <img src="img/vegeta.jpg" alt="">
+
+            <div class="card-content">
+
+                <h3>Vegeta Blue</h3>
+
+                <p>Réplica</p>
+
+                <span class="price">
+                    $169.900 COP
+                </span>
+
+                <button
+                    class="add-to-cart"
+                    data-name="Vegeta Blue"
+                    data-price="169900"
+                    data-image="img/vegeta.jpg">
+
+                    Añadir al carrito
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- CARRITO -->
+
+<section id="cart" class="section">
+
+    <h2>Carrito de Compras</h2>
+
+    <div id="cart-items">
+
+    </div>
+
+    <h3 id="cart-total">
+        Total: $0 COP
+    </h3>
+
+    <div style="text-align:center;">
+
+        <button
+            id="clear-cart"
+            class="btn">
+
+            Vaciar Carrito
+
+        </button>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 Renkai Store.
+        Todos los derechos reservados.
+    </p>
+
+</footer>
+
+<script src="js/script.js"></script>
 
 </body>
 
