@@ -1,10 +1,12 @@
-// ============================
+// ==========================
 // RENKAI STORE
-// ============================
+// ==========================
 
 console.log("Renkai cargado correctamente");
 
-// Animación de tarjetas
+// ==========================
+// ANIMACIONES
+// ==========================
 
 const cards = document.querySelectorAll(".card");
 
@@ -16,7 +18,9 @@ const observer = new IntersectionObserver(entries => {
 
             entry.target.style.opacity = "1";
             entry.target.style.transform = "translateY(0)";
+
         }
+
     });
 
 });
@@ -25,58 +29,225 @@ cards.forEach(card => {
 
     card.style.opacity = "0";
     card.style.transform = "translateY(30px)";
-    card.style.transition = "0.6s";
+    card.style.transition = "0.6s ease";
 
     observer.observe(card);
 
 });
 
-// Botones Comprar
+// ==========================
+// CARRITO
+// ==========================
 
-const botones = document.querySelectorAll(".card button");
+let cart =
+    JSON.parse(
+        localStorage.getItem("renkaiCart")
+    ) || [];
 
-botones.forEach(boton => {
+const cartContainer =
+    document.getElementById("cart-items");
 
-    boton.addEventListener("click", () => {
+const totalContainer =
+    document.getElementById("cart-total");
 
-        alert("Carrito de compras próximamente disponible.");
+const cartCount =
+    document.getElementById("cart-count");
+
+// ==========================
+// GUARDAR CARRITO
+// ==========================
+
+function saveCart() {
+
+    localStorage.setItem(
+        "renkaiCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+// ==========================
+// ACTUALIZAR CARRITO
+// ==========================
+
+function updateCart() {
+
+    if (!cartContainer) {
+
+        if (cartCount) {
+
+            cartCount.textContent =
+                cart.length;
+
+        }
+
+        return;
+
+    }
+
+    cartContainer.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+
+        total += item.price;
+
+        cartContainer.innerHTML += `
+        <div class="cart-item">
+
+            <div class="cart-product">
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                    class="cart-image">
+
+                <div>
+
+                    <h4>${item.name}</h4>
+
+                    <p>$${item.price.toLocaleString()} COP</p>
+
+                </div>
+
+            </div>
+
+            <button onclick="removeItem(${index})">
+                Eliminar
+            </button>
+
+        </div>
+        `;
+
+    });
+
+    if (totalContainer) {
+
+        totalContainer.innerHTML =
+            `Total: $${total.toLocaleString()} COP`;
+
+    }
+
+    if (cartCount) {
+
+        cartCount.textContent =
+            cart.length;
+
+    }
+
+}
+
+// ==========================
+// AGREGAR PRODUCTOS
+// ==========================
+
+document
+.querySelectorAll(".add-to-cart")
+.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const item = {
+
+            name:
+                button.dataset.name,
+
+            price:
+                Number(button.dataset.price),
+
+            image:
+                button.dataset.image
+
+        };
+
+        cart.push(item);
+
+        saveCart();
+
+        updateCart();
+
+        alert(
+            item.name +
+            " añadido al carrito."
+        );
 
     });
 
 });
 
-// Año automático
+// ==========================
+// ELIMINAR PRODUCTO
+// ==========================
 
-const footer = document.querySelector("footer p");
+function removeItem(index) {
 
-if (footer) {
+    cart.splice(index, 1);
 
-    footer.innerHTML =
-        `© ${new Date().getFullYear()} Renkai Store. Todos los derechos reservados.`;
+    saveCart();
+
+    updateCart();
+
 }
 
-// ============================
-// FILTRO CATALOGO
-// ============================
+window.removeItem = removeItem;
 
-const buscador = document.getElementById("searchInput");
-const filtro = document.getElementById("categoryFilter");
+// ==========================
+// VACIAR CARRITO
+// ==========================
+
+const clearButton =
+    document.getElementById("clear-cart");
+
+if (clearButton) {
+
+    clearButton.addEventListener(
+        "click",
+        () => {
+
+            cart = [];
+
+            saveCart();
+
+            updateCart();
+
+        }
+    );
+
+}
+
+// ==========================
+// FILTRO DE PRODUCTOS
+// ==========================
+
+const buscador =
+    document.getElementById("searchInput");
+
+const filtro =
+    document.getElementById("categoryFilter");
 
 if (buscador && filtro) {
 
     function filtrarProductos() {
 
-        const texto = buscador.value.toLowerCase();
-        const categoria = filtro.value;
+        const texto =
+            buscador.value.toLowerCase();
 
-        document.querySelectorAll(".card").forEach(card => {
+        const categoria =
+            filtro.value;
 
-            const nombre = card
+        document
+        .querySelectorAll(".card")
+        .forEach(card => {
+
+            const nombre =
+                card
                 .querySelector("h3")
                 .textContent
                 .toLowerCase();
 
-            const tipo = card.dataset.category;
+            const tipo =
+                card.dataset.category;
 
             const coincideTexto =
                 nombre.includes(texto);
@@ -85,13 +256,18 @@ if (buscador && filtro) {
                 categoria === "todas" ||
                 tipo === categoria;
 
-            if (coincideTexto && coincideCategoria) {
+            if (
+                coincideTexto &&
+                coincideCategoria
+            ) {
 
-                card.style.display = "block";
+                card.style.display =
+                    "block";
 
             } else {
 
-                card.style.display = "none";
+                card.style.display =
+                    "none";
 
             }
 
@@ -99,8 +275,34 @@ if (buscador && filtro) {
 
     }
 
-    buscador.addEventListener("keyup", filtrarProductos);
+    buscador.addEventListener(
+        "keyup",
+        filtrarProductos
+    );
 
-    filtro.addEventListener("change", filtrarProductos);
+    filtro.addEventListener(
+        "change",
+        filtrarProductos
+    );
 
 }
+
+// ==========================
+// FOOTER AUTOMÁTICO
+// ==========================
+
+const footer =
+    document.querySelector("footer p");
+
+if (footer) {
+
+    footer.innerHTML =
+        `© ${new Date().getFullYear()} Renkai Store. Todos los derechos reservados.`;
+
+}
+
+// ==========================
+// INICIALIZAR
+// ==========================
+
+updateCart();
